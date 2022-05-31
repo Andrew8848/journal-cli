@@ -1,0 +1,112 @@
+<cdk-virtual-scroll-viewport #elemVirtualScroll tvsItemSize="48" class="journal-table">
+  <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8">
+
+    <ng-container matColumnDef="numseq">
+      <th mat-header-cell *matHeaderCellDef> Num. </th>
+      <td mat-cell *matCellDef="let i = dataIndex">
+        {{(i+1) + (paginator.pageIndex * paginator.pageSize)}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateTime">
+      <th mat-header-cell *matHeaderCellDef> DateTimePub. </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.logDateTime.date + " "
+      + element.logDateTime.time}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="user">
+      <th mat-header-cell *matHeaderCellDef> User </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.user.doctor.nameSurname.name + " "
+      +element.user.doctor.nameSurname.surname}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="doctor">
+      <th mat-header-cell *matHeaderCellDef> Doctor of Journal </th>
+      <td mat-cell *matCellDef="let element">
+        {{findDoctor(element).nameSurname.name + " " + findDoctor(element).nameSurname.surname}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="oldJournal">
+      <th mat-header-cell *matHeaderCellDef> Old Journal </th>
+      <td mat-cell *matCellDef="let element">
+        {{
+        element?.oldJournal?.id
+        + " "
+        + element?.oldJournal?.patient?.nameSurname?.name
+        + " "
+        + element?.oldJournal?.patient?.nameSurname?.surname
+        + " "
+        + element?.oldJournal?.patient?.dateOfBirth
+        }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="newJournal">
+      <th mat-header-cell *matHeaderCellDef> New Journal </th>
+      <td mat-cell *matCellDef="let element">
+        {{
+        element?.newJournal?.id
+        + " "
+        + element?.newJournal?.patient?.nameSurname?.name
+        + " "
+        + element?.newJournal?.patient?.nameSurname?.surname
+        + " "
+        + element?.newJournal?.patient?.dateOfBirth
+        }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.action.value}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}}</td>
+    </ng-container>
+
+
+    <tr mat-header-row style="height: 32px" *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"
+        class="element-row"
+        [class.example-expanded-row]="expandedElement === row"
+        (click)="expandedElement = expandedElement === row ? null : row">
+    </tr>
+  </table>
+</cdk-virtual-scroll-viewport>
+
+<div class="load-spinner" *ngIf="dataSource.$loading | async">
+  <mat-spinner></mat-spinner>
+</div>
+
+<mat-paginator [length]="dataSource.$totalItems | async" [pageSizeOptions]="initSizeItemsOptions()"></mat-paginator>
+
+<section class="controller">
+  <mat-button-toggle-group #toggleGroup class="all-or-my-journal-switcher" name="allOrMy">
+    <mat-button-toggle (click)="loadLogPage()" value="all">ALL</mat-button-toggle>
+    <mat-button-toggle (click)="loadMyLogs()" value="my">MY</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <mat-form-field class="selector-doctors" appearance="fill">
+    <mat-label>Doctors</mat-label>
+    <mat-select [formControl]="toppingUsers" (selectionChange)="selectorOnChange()" #selector multiple>
+      <mat-select-trigger>
+        {{"Selected: " + countSelectedElementInSelector()}}
+        <span *ngIf="toppingUsers.value?.length > 1" class="example-additional-selection">
+        (+{{toppingUsers.value.length - 1}} {{toppingUsers.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let topping of elevatedUsers" [value]="topping">{{" " + topping.doctor.nameSurname.surname + " " + topping.doctor.nameSurname.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</section>
+

@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+mat-dialog-container {
+  position: relative !important;
+}
+
+.cdk-virtual-scroll-content-wrapper
+{
+  transform: none !important;
+  /*transform: translateY(0px) !important;*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #8aAa20 !important;   /*inner circle color change*/
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #8aAa20 !important; /*outer ring color change*/
+}
+
+.standard-snackbar {
+  background: #efefef;
+  color: darkslategrey;
+}
+
+.standard-snackbar button {
+  color: crimson;
+}
+
+/*.mat-grid-tile {*/
+/*  !*display: flex !important;*!*/
+/*  display: inline-block;*/
+/*  justify-content: flex-start !important ;*/
+/*  align-items: flex-start !important;*/
+/*  align-self: flex-start !important;*/
+/*  float: left !important;*/
+/*  background: coral;*/
+/*  !*height: 10px;*!*/
+/*  padding: 0;*/
+/*  margin: 0;*/
+
+/*  !*justify-content: flex-start;*!*/
+
+/*}*/

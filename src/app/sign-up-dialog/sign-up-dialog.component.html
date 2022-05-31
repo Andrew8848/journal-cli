@@ -1,0 +1,101 @@
+<mat-dialog-actions>
+  <button mat-icon-button mat-dialog-close> <mat-icon>close</mat-icon></button>
+</mat-dialog-actions>
+<div class="sign-up-head">
+  <mat-icon>account_circle</mat-icon>
+  <h2 mat-dialog-title icon>Sign up</h2>
+</div>
+
+<mat-dialog-content>
+
+  <mat-vertical-stepper #stepper (selectionChange)="stepperChanging($event)">
+
+    <mat-step [stepControl]="firstForm" errorMessage="Name or Surname is not filled">
+      <form [formGroup]="firstForm">
+        <ng-template matStepLabel>Fill out your name and surname</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input type="username" matInput formControlName="name" required>
+          <mat-error *ngIf="name.errors?.['required']">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Surname</mat-label>
+          <input type="surname" matInput formControlName="surname" required>
+          <mat-error *ngIf="surname.errors?.['required']">
+            Surname is <strong>required</strong>, too
+          </mat-error>
+        </mat-form-field>
+        <div style="margin-top: 0px">
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+
+    <mat-step [stepControl]="secondForm" errorMessage="Incorrect e-mail or password">
+      <form [formGroup]="secondForm">
+        <ng-template matStepLabel>E-mail and password</ng-template>
+        <mat-form-field style="margin-bottom: 7px" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" [errorStateMatcher]="emailMatcher"
+                 placeholder="Ex. your.mail@example.com">
+          <mat-error *ngIf="email.errors?.['email'] && !email.errors?.['required']">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="email.errors?.['required']">
+            Email is <strong>required</strong>
+          </mat-error>
+          <mat-hint *ngIf="emailIsExist" style="font-weight: bolder; font-family: sans-serif; color: crimson;">
+            {{this.emailApiMessage.message}}
+          </mat-hint>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+          <input matInput formControlName="password" #pass [type]="toggle.type" required placeholder="Ex. myPass123">
+          <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
+          <mat-error *ngIf="pass.value.length < passlength && !password.errors?.['required']">
+            Your password must not be less than <strong>{{passlength}} symbols</strong>
+          </mat-error>
+          <mat-error *ngIf="password.errors?.['required']">
+            Password is <strong>required</strong>
+          </mat-error>
+          </mat-form-field>
+          <mat-password-strength #passwordComponent
+                                 [password]="pass.value"
+                                 style="margin-top: 15px">
+          </mat-password-strength>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Confirm password</mat-label>
+            <input matInput
+                   [type]="toggle.type"
+                   formControlName="confirmPassword">
+            <mat-error *ngIf="confirmPassword.errors?.['mustMatch'] && !confirmPassword.errors['required']">
+              Password is <strong>not matched</strong>
+            </mat-error>
+            <mat-error *ngIf="confirmPassword.errors?.['required']">
+              Password is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Register and confirm via email</ng-template>
+      <div class="to-register">
+        <button mat-raised-button #buttonRegister (click)="registerAndSendEmailVerification()">Register</button>
+      </div>
+    </mat-step>
+
+
+  </mat-vertical-stepper>
+</mat-dialog-content>
+

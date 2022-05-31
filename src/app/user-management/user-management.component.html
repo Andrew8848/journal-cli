@@ -1,0 +1,19 @@
+<div>
+  <mat-grid-list *ngFor="let user of users" cols="5" rowHeight="47px" r>
+    <mat-grid-tile><p>{{user.doctor.nameSurname.surname + " " + user.doctor.nameSurname.name}}</p></mat-grid-tile>
+    <mat-grid-tile><p>{{user.doctor.email}}</p></mat-grid-tile>
+    <mat-grid-tile><p>{{"Date Creation: " + user.dateTimeCreation.date + " " + user.dateTimeCreation.time}}</p></mat-grid-tile>
+    <mat-grid-tile><p class="p-id">{{"ID: " + user.id}}</p></mat-grid-tile>
+    <mat-grid-tile>
+      <p class="staff-switcher">
+        <mat-slide-toggle
+          color="primary"
+          [checked]="isStaff(user)"
+          (change)="staffSwitch(user.id, $event)">
+          Staff
+        </mat-slide-toggle>
+      </p>
+    </mat-grid-tile>
+    <mat-divider></mat-divider>
+  </mat-grid-list>
+</div>

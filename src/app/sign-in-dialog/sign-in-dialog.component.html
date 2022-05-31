@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="sign-in-dialog.component.scss">
+<mat-dialog-actions class="dialog-close">
+  <button mat-icon-button mat-dialog-close><mat-icon>close</mat-icon></button>
+</mat-dialog-actions>
+<div class="sign-in-head">
+  <mat-icon>account_circle</mat-icon>
+  <h2 mat-dialog-title>Sign in</h2>
+</div>
+<mat-dialog-content class="mat-typography" (keydown.enter)="signIn()">
+  <form [formGroup]="signInForm">
+    <ng-template matStepLabel>E-mail and password</ng-template>
+    <mat-form-field appearance="fill" style="margin-top: 12px">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" [errorStateMatcher]="emailMatcher"
+             placeholder="Ex. your.mail@example.com">
+      <mat-error *ngIf="email.errors?.['email'] && !email.errors?.['required']">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="email.errors?.['required']">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input matInput formControlName="password" [type]="toggle.type" required placeholder="Ex. yourPass123">
+      <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
+      <mat-error *ngIf="password.errors?.['required']">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-login">
+  <button mat-button class="login" #buttonLogin (click)="signIn()" [disabled]="true" cdkFocusInitial>LOGIN</button>
+</mat-dialog-actions>

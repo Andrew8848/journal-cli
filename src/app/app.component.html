@@ -1,0 +1,28 @@
+<!--<a routerLink="/login">Link login</a>-->
+<!--<a routerLink="/registration">Link registration</a>-->
+<!--<a routerLink="/main">Main Link</a>-->
+<header>
+  <mat-icon class="header-icon">import_contacts</mat-icon>
+  <h1 class="name">{{title}}</h1>
+  <section class="nav-bar" *ngIf="!userExist">
+    <button mat-button (click)="openSignInDialog()">sign in</button>
+    <h1>Or</h1>
+    <button mat-button (click)="openSignUpDialog()">sign up</button>
+  </section>
+  <section *ngIf="isOwner" class="nav-page">
+    <a routerLink="/main">MAIN</a>
+    <a routerLink="/userManagement">USER MANAGEMENT</a>
+    <a routerLink="/log">LOG</a>
+  </section>
+  <section class="nav-bar" *ngIf="userExist" style="margin-right: 21px;">
+<!--    <mat-icon *ngIf="accesStatus" style="color: greenyellow">fiber_manual_record</mat-icon>-->
+<!--    <mat-icon *ngIf="!accesStatus" style="color: orangered">fiber_manual_record</mat-icon>-->
+    <button mat-button [matMenuTriggerFor]="userMenu">{{userName + " " + userSurame + " "}}<mat-icon style="transform: translate(0px, -2px);">account_circle</mat-icon></button>
+    <mat-menu #userMenu="matMenu" xPosition="before">
+      <button mat-menu-item (click)="logout()" style="font-family: sans-serif"><mat-icon style="color: crimson">exit_to_app</mat-icon>LOGOUT</button>
+    </mat-menu>
+  </section>
+</header>
+<router-outlet></router-outlet>
+
+

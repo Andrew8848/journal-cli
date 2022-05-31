@@ -1,0 +1,81 @@
+.written-form {
+  display: flex;
+  position: relative;
+}
+  section{
+    margin: 20px;
+  }
+
+  .section-one {
+    position: -webkit-sticky;
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: 400px;
+    min-width: 200px;
+    .inputs-name-surname{
+    }
+    .calendar{
+      width: 210px;
+    }
+    .radio-consultation{
+      display: flex;
+      mat-radio-button{
+        margin: 10px;
+      }
+    }
+  }
+
+  .section-second{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    min-width: 200px;
+    .input-diagnosis{
+      textarea{
+        min-height: 300px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 700px){
+    .written-form {
+      flex-direction: column;
+    }
+    .section-one{
+      height: auto;
+    }
+    .section-second {
+      width: auto;
+    }
+  }
+
+mat-dialog-actions{
+  position: relative;
+  height:auto;
+  padding:0;
+
+  .button-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #efefef;
+    background: #8aAa20;
+  }
+
+  .button-add{
+    position: absolute;
+    background-color: #8aAa20;
+    color: #efefef;
+    font-family: sans-serif;
+    font-weight: bolder;
+    transform: translate(0, -40%);
+    right: 0;
+  }
+
+  button[disabled] {
+      background-color: darkgray;
+  }
+}
+

@@ -1,0 +1,12 @@
+{
+  "/source": {
+    "target":  {
+      "host": "localhost:8080",
+      "protocol": "http:",
+      "port": 443
+    },
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
+  }
+}

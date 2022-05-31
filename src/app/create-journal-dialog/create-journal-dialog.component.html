@@ -1,0 +1,41 @@
+<mat-dialog-actions>
+  <button class="button-close" mat-mini-fab mat-dialog-close><mat-icon>close</mat-icon></button>
+</mat-dialog-actions>
+<mat-dialog-content (keydown.enter)="createJournal()">
+  <form class="written-form" [formGroup]="journalForm">
+    <section class="section-one">
+      <h1>Patient</h1>
+      <div class="inputs-name-surname">
+        <mat-form-field class="input-name" appearance="legacy">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="patient name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field class="input-surname" appearance="legacy">
+          <mat-label>Surname</mat-label>
+          <input matInput placeholder="patient surname" formControlName="surname">
+        </mat-form-field>
+      </div>
+      <mat-form-field class="calendar" appearance="fill">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker [calendarHeaderComponent]="datePicker"></mat-datepicker>
+      </mat-form-field>
+      <mat-radio-group class="radio-consultation" formControlName="consultation" aria-label="Select an option">
+        <mat-radio-button value="POLICLINIC">Policlinic</mat-radio-button>
+        <mat-radio-button value="HOSPITAL">Hospital</mat-radio-button>
+      </mat-radio-group>
+    </section>
+
+    <section class="section-second">
+      <h1>Diagnosis</h1>
+      <mat-form-field class="input-diagnosis" appearance="outline">
+        <mat-label>Description of the diagnosis</mat-label>
+        <textarea matInput formControlName="diagnosis"></textarea>
+      </mat-form-field>
+    </section>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="button-add" mat-raised-button #buttonAddJournal [disabled]="true" (click)="createJournal()">ADD JOURNAL</button>
+</mat-dialog-actions>

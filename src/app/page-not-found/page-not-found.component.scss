@@ -1,0 +1,53 @@
+$pnf-status-size: 200px;
+$gb-button-size: 80px;
+.pnf {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100%;
+  align-items: center;
+  left: 0; right: 0;
+  margin-left: auto; margin-right: auto;
+  justify-content: center;
+
+    .pnf-status {
+      display: flex;
+      flex-direction: column;
+      height: $pnf-status-size/1.4;
+
+      color: darkslategray;
+
+      h1 {
+        font-size: $pnf-status-size;
+        align-self: center;
+      }
+
+      h2{
+        font-size: $pnf-status-size/3;
+        align-self: center;
+        margin-top: auto;
+      }
+  }
+  a{
+    display: block;
+    margin-top: $pnf-status-size/10;
+    align-self: center;
+    outline: none;
+    font-size: xx-large;
+    font-family: sans-serif;
+    font-weight: bolder;
+    text-decoration: none;
+    padding: 17px;
+    border-radius: 17px;
+    color: #efefef;
+    background: #6a9a30;
+    transition: all 150ms ease;
+      &:hover{
+        background: #9aba60;
+        transform: scale(1.15)
+      }
+      &:active{
+        transform: scale(1);
+      }
+  }
+}

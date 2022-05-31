@@ -1,0 +1,38 @@
+mat-dialog-actions{
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right:12px;
+}
+.sign-up-head {
+  display: flex;
+  justify-content: center;
+  height: 64px;
+
+  mat-icon{
+    margin: auto;
+    margin-right: 10px;
+    transform: scale(2.0);
+    color: #6a9a30;
+  }
+  h2 {
+    margin: auto;
+    margin-left: 10px;
+    text-align: center;
+  }
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.to-register {
+  button {
+    background: #6a9a30;
+    color: #efefef;
+    align-self: center;
+  }
+  button[disabled] {
+    background-color: darkgray;
+  }
+}

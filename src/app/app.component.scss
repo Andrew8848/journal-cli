@@ -1,0 +1,91 @@
+$header-height: 64px;
+
+header{
+  display: flex;
+  background: #6a9a30;
+  width: 100%;
+  height: $header-height;
+
+  .header-icon {
+    $icon-size: 37px;
+
+    font-size: $icon-size;
+    height: $icon-size;
+    width: $icon-size;
+    margin-bottom: 4px;
+    margin-left: 21px;
+    align-self: center;
+    color: #efefef;
+    transform: scale(2.0) !important;
+  }
+
+  .name{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5px;
+    margin-right: 25px;
+    align-self: center;
+
+    color: #efefef;
+    font-size: x-large;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+  }
+
+  .nav-bar {
+    display: flex;
+    margin-left: auto;
+    margin-right: 67px;
+    align-items: center;
+
+    button {
+      padding: 10px;
+      border-radius: 0;
+      height: $header-height;
+      font-size: 17px;
+      font-family: sans-serif;
+      text-transform: uppercase;
+      color: #efefef;
+    }
+
+    h1 {
+      padding: 10px;
+      margin: auto;
+      font-size: 17px;
+      font-family: sans-serif;
+      text-transform: uppercase;
+      color: #efefef;
+    }
+  }
+
+  .nav-page{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    justify-content: center;
+    a{
+      display: block;
+      align-self: center;
+      outline: none;
+      font-size: large;
+      font-family: sans-serif;
+      font-weight: initial;
+      text-decoration: none;
+      padding: 17px;
+      color: #efefef;
+      background: #6a9a30;
+      margin-right: 17px;
+      transition: all 150ms ease;
+      &:hover{
+        background: #9aba60;
+        transform: scale(1.15)
+      }
+      &:active{
+        transform: scale(1);
+      }
+    }
+  }
+
+}
