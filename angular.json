@@ -73,7 +73,8 @@
               "browserTarget": "journal:build:production"
             },
             "development": {
-              "browserTarget": "journal:build:development"
+              "browserTarget": "journal:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

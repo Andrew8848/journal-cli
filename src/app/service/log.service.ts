@@ -9,7 +9,7 @@ import {LogOnPage} from "../model/LogModel";
 })
 export class LogService {
 
-  private url = "http://localhost:8848/log/"
+  private url = "api/log/"
 
   constructor(private http: HttpClient, private userService: UserService) { }
 

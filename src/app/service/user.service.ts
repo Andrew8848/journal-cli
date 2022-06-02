@@ -10,7 +10,7 @@ import {ApiMessage} from "../model/Form";
 })
 export class UserService {
 
-  private url = "http://localhost:8848/user/"
+  private url = "api/user/"
 
   private cookieUserNameKey = 'userName';
   private cookieUserSurnameKey= 'userSurname';

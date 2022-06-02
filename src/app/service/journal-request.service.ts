@@ -12,11 +12,9 @@ import {User} from "../model/UserModel";
 })
 export class JournalRequestService {
 
-  private url = "http://localhost:8848/journal/"
+  private url = "api/journal/"
 
   constructor(private http: HttpClient, private userService: UserService) { }
-
-
 
    public getNewestJournalsByPage(page: number, size: number) {
      return this.http.get<JournalByPage>(

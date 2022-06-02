@@ -1,12 +1,12 @@
 {
-  "/source": {
-    "target":  {
-      "host": "localhost:8080",
-      "protocol": "http:",
-      "port": 443
-    },
+  "/api/*": {
+    "target": "http://localhost:8848/",
     "secure": false,
+    "logLevel": "debug",
     "changeOrigin": true,
-    "logLevel": "info"
+    "pathRewrite": { "^/api": "" },
+    "headers": {
+      "Connection": "keep-alive"
+    }
   }
 }
